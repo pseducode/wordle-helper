@@ -21,16 +21,25 @@ def main():
     else:
         print("Ok, suit yourself")
         #continue
-        searchstr=""
-    while not searchstr=="done":
+    searchstr=""
+    while not searchstr in ("done", "done\n"):
         print("Ok,  now enter filter string using known letters, and *s + ?s, input done to quit")
         searchstr = input()
+        if(searchstr.lower()=="done"):
+            exit
         searchstr+='\n' #all words in list end with newline, add to seach criteria, alternatively, add a star instead
+        if(searchstr =="done\n"):
+            exit
         pos = fnmatch.filter(allposs,searchstr)
-         
         numpos = len(pos)
         print("That seach criteria, yeilded: "+str(numpos)+" results total in wordlist")
-        if numpos>0: 
+        if numpos>0:
+            if (numpos<=15):
+                print("Since there are oinly "+numpos+" results, want to see them all? Y/N?")
+                allr= input()
+                if allr.lower()=="y":
+                    print(pos)
+                    
             print("given that pattern, I found: "+str(numpos)+"words that fit thast criteria, picking one, now")
             totry = pos[random.randint(0,numpos-1)]
             print("ok, why don't youi try: "+totry)
