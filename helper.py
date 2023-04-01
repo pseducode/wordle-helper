@@ -35,7 +35,7 @@ def main():
         print("That seach criteria, yeilded: "+str(numpos)+" results total in wordlist")
         if numpos>0:
             if (numpos<=15):
-                print("Since there are oinly "+numpos+" results, want to see them all? Y/N?")
+                print("Since there are oinly "+str(numpos)+" results, want to see them all? Y/N?")
                 allr= input()
                 if allr.lower()=="y":
                     print(pos)
